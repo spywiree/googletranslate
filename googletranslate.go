@@ -20,8 +20,19 @@ func Translate(text, source, target string) (string, error) {
 	called = true
 
 	translated, err := TranslateApiV1(text, source, target)
-	if err != nil {
-		translated, err = TranslateApiV2(text, source, target)
+	if err == nil {
+		return translated, nil
 	}
+
+	translated, err = TranslateApiV3(text, source, target)
+	if err == nil {
+		return translated, nil
+	}
+
+	translated, err = TranslateApiV2(text, source, target)
+	if err == nil {
+		return translated, nil
+	}
+
 	return translated, err
 }

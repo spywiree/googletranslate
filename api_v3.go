@@ -3,16 +3,16 @@ package googletranslate
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
 	"io"
 	"net/http"
 	u "net/url"
 	"strings"
 )
 
-// TranslateApiV1 translates the given text from the source language to the target language
-// using the translate.googleapis.com endpoint
-func TranslateApiV1(text, source, target string) (string, error) {
+// TranslateApiV3 translates the given text from the source language to the target language
+// using clients5.google.com/translate_a/t endpoint.
+func TranslateApiV3(text, source, target string) (string, error) {
+	// Trim leading and trailing whitespaces from the input text.
 	text = strings.TrimSpace(text)
 
 	// Return early if source and target languages are the same, or if the text is empty.
@@ -20,12 +20,14 @@ func TranslateApiV1(text, source, target string) (string, error) {
 		return text, nil
 	}
 
-	var translatedTexts []string
-	var result []interface{}
+	// Set the source language to "auto" if not provided.
+	if source == "" {
+		source = "auto"
+	}
 
 	// Build the URL for the Google Translate API.
-	url := "https://translate.googleapis.com/translate_a/single?client=gtx&dt=t"
-	url += "&sl=" + source
+	url := "https://clients5.google.com/translate_a/t?client=dict-chrome-ex"
+	url += "?sl=" + source
 	url += "&tl=" + target
 	url += "&q=" + u.QueryEscape(text)
 
@@ -37,7 +39,6 @@ func TranslateApiV1(text, source, target string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	defer r.Body.Close()
 
 	// Read the response body.
 	body, err := io.ReadAll(r.Body)
@@ -45,13 +46,8 @@ func TranslateApiV1(text, source, target string) (string, error) {
 		return "", err
 	}
 
-	// Check if the response indicates a Bad Request (400) error.
-	isBadRequest := strings.Contains(string(body), `<title>Error 400 (Bad Request)`)
-	if isBadRequest {
-		return "", errors.New("error 400 (Bad Request)")
-	}
-
 	// Unmarshal the JSON response.
+	var result []interface{}
 	err = json.Unmarshal(body, &result)
 	if err != nil {
 		return "", err
@@ -62,16 +58,8 @@ func TranslateApiV1(text, source, target string) (string, error) {
 		inner := result[0]
 		switch inner := inner.(type) {
 		case []interface{}:
-			// Iterate through the response data and extract translated text.
-			for _, slice := range inner {
-				for _, translatedText := range slice.([]interface{}) {
-					translatedTexts = append(translatedTexts, fmt.Sprintf("%v", translatedText))
-					break
-				}
-			}
-			combinedText := strings.Join(translatedTexts, "")
-
-			return combinedText, nil
+			translated := inner[0].(string)
+			return translated, nil
 		}
 	}
 

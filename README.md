@@ -2,7 +2,7 @@
 
  - **free**
  - **thread-safe**
- - **two endpoints**
+ - **three endpoints**
  - **resilient to socket buffer errors**
 
 Install:
