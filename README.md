@@ -25,6 +25,6 @@ func main(){
     // so, translator will detect language
     result, _ := gt.Translate(text, "en", "es")
     fmt.Println(result)
-	// Output: "Hola, Mundo!"
+    // Output: "Hola, Mundo!"
 }
 ```
