@@ -27,7 +27,7 @@ func TranslateApiV3(text, source, target string) (string, error) {
 
 	// Build the URL for the Google Translate API.
 	url := "https://clients5.google.com/translate_a/t?client=dict-chrome-ex"
-	url += "?sl=" + source
+	url += "&sl=" + source
 	url += "&tl=" + target
 	url += "&q=" + u.QueryEscape(text)
 
@@ -57,9 +57,13 @@ func TranslateApiV3(text, source, target string) (string, error) {
 	if len(result) > 0 {
 		inner := result[0]
 		switch inner := inner.(type) {
-		case []interface{}:
-			translated := inner[0].(string)
+		case []string:
+			// Handle the case when source language is "auto".
+			translated := inner[0]
 			return translated, nil
+		case string:
+			// Handle the case when a specific source language is provided.
+			return inner, nil
 		}
 	}
 
