@@ -1,24 +1,19 @@
 package googletranslate
 
 import (
-	"github.com/spywiree/googletranslate/multimutex"
+	"github.com/spywiree/googletranslate/semaphore"
 )
 
-var mu = multimutex.NewMultiMutex(256) // Default value is 256
-var called = false
+var sem = semaphore.NewSemaphore(256) // Default value is 256
 
 // SetMaxConnections sets the maximum number of concurrent connections for Google Translate API.
-// This must be done before any API call. Specify -1 to disable the connection limit.
+// Specify -1 to disable the connection limit.
 func SetMaxConnections(maxConcurrent int) {
-	if !called {
-		mu = multimutex.NewMultiMutex(maxConcurrent)
-	}
+	sem.Resize(int64(maxConcurrent))
 }
 
 // Translate translates the given text from the source language to the target language using Google Translate API.
 func Translate(text, source, target string) (string, error) {
-	called = true
-
 	translated, err := TranslateApiV1(text, source, target)
 	if err == nil {
 		return translated, nil

@@ -30,10 +30,9 @@ func TranslateApiV1(text, source, target string) (string, error) {
 	url += "&q=" + u.QueryEscape(text)
 
 	// Acquire a lock to prevent concurrent API calls.
-	mu.Lock()
+	sem.Acquire(1)
 	r, err := http.Get(url)
-	mu.Unlock()
-
+	sem.Release(1)
 	if err != nil {
 		return "", err
 	}
