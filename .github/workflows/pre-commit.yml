@@ -1,4 +1,3 @@
-# .github/workflows/pre-commit.yaml
 # heavily inspired by: https://github.com/goreleaser/goreleaser/blob/main/.github/workflows/build.yml
 
 on:
