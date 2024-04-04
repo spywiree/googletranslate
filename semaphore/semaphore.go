@@ -38,21 +38,26 @@ func (s *Semaphore) TryAcquire(n int64) bool {
 }
 
 // Resize adjusts the maximum capacity of the semaphore. Acquires or releases permits accordingly.
-func (s *Semaphore) Resize(newCap int64) {
+func (s *Semaphore) Resize(newCap int64) error {
+	var err error
 	if newCap != -1 {
 		if newCap > s.cap {
-			s.Acquire(newCap - s.cap)
+			err = s.Acquire(newCap - s.cap)
+			if err != nil {
+				return err
+			}
 		} else if newCap < s.cap {
 			s.Release(s.cap - newCap)
 		}
 	}
 	s.cap = newCap
+	return nil
 }
 
 // NewSemaphore creates and initializes a new Semaphore with the specified initial capacity.
 func NewSemaphore(initialCap int64) *Semaphore {
 	sem := Semaphore{
-		ctx: context.TODO(),
+		ctx: context.Background(),
 		sem: semaphore.NewWeighted(math.MaxInt64),
 	}
 	sem.Resize(initialCap)

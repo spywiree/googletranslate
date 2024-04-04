@@ -33,7 +33,7 @@ func TranslateApiV2(text, source, target string) (string, error) {
 		url += "&q=" + u.QueryEscape(text)
 
 		// Acquire a lock to prevent concurrent API calls.
-		sem.Acquire(1)
+		_ = sem.Acquire(1)
 		r, err := http.Get(url)
 		sem.Release(1)
 
