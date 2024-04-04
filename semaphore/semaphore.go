@@ -60,6 +60,6 @@ func NewSemaphore(initialCap int64) *Semaphore {
 		ctx: context.Background(),
 		sem: semaphore.NewWeighted(math.MaxInt64),
 	}
-	sem.Resize(initialCap)
+	_ = sem.Resize(initialCap)
 	return &sem
 }

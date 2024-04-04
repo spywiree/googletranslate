@@ -9,7 +9,7 @@ var sem = semaphore.NewSemaphore(256) // Default value is 256
 // SetMaxConnections sets the maximum number of concurrent connections for Google Translate API.
 // Specify -1 to disable the connection limit.
 func SetMaxConnections(maxConcurrent int) {
-	sem.Resize(int64(maxConcurrent))
+	_ = sem.Resize(int64(maxConcurrent))
 }
 
 // Translate translates the given text from the source language to the target language using Google Translate API.
