@@ -29,5 +29,7 @@ func main(){
 }
 ```
 
+---
+
 Would you like to perform photo-to-photo translations?\
 Take a look at my other package: [translateimage](https://github.com/spywiree/translateimage).
