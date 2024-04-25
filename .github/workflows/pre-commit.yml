@@ -11,6 +11,7 @@ on:
     paths:
       - "**/*.go"
       - "go.*"
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -29,10 +30,10 @@ jobs:
           go-version: stable
 
       - name: golangci-lint
-        uses: golangci/golangci-lint-action@v5
+        uses: golangci/golangci-lint-action@v4
         with:
           args: --timeout=5m
-          # skip-cache: true
+          skip-cache: true
 
   govulncheck:
     runs-on: ubuntu-latest
