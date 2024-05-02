@@ -1,4 +1,4 @@
-golang.org/x/net v0.24.0 h1:1PcaxkF854Fu3+lvBIx5SYn9wRlBzzcnHZSiaFFAb0w=
-golang.org/x/net v0.24.0/go.mod h1:2Q7sJY5mzlzWjKtYUEXSlBWCdyaioyXzRB2RtU8KVE8=
+github.com/spywiree/languagecodes v1.0.0 h1:dOl9+hPewK4kqNLdPddaIaZZ6Haj5c4vYrb2+usLmbk=
+github.com/spywiree/languagecodes v1.0.0/go.mod h1:qZIl4iSwH0wUf+JJwYEsVePCyrrSkH5Bqh6M15Xh6lk=
 golang.org/x/sync v0.7.0 h1:YsImfSBoP9QPYL0xyKJPq0gcaJdG3rInoqxTWbfQu9M=
 golang.org/x/sync v0.7.0/go.mod h1:Czt+wKu1gCyEFDUtn0jG5QVvpJ6rzVqr5aXyt9drQfk=
