@@ -1,7 +1,7 @@
 package googletranslate
 
 import (
-	"github.com/spywiree/googletranslate/semaphore"
+	"github.com/spywiree/googletranslate/v2/semaphore"
 	"github.com/spywiree/languagecodes"
 )
 
