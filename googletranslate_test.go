@@ -2,7 +2,6 @@ package googletranslate_test
 
 import (
 	_ "embed"
-	"fmt"
 	"strings"
 	"testing"
 
@@ -48,7 +47,6 @@ func TestEndpoint3A(t *testing.T) {
 }
 
 func TestEndpoint3B(t *testing.T) {
-	fmt.Println(shortText)
 	result, err := googletranslate.TranslateE3(shortText, languagecodes.POLISH, languagecodes.ENGLISH)
 	assert.NotEqual(t, "", result)
 	assert.Equal(t, nil, err)
