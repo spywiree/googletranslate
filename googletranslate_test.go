@@ -28,7 +28,6 @@ func TestEndpoint1B(t *testing.T) {
 
 func TestEndpoint2A(t *testing.T) {
 	result, err := googletranslate.TranslateE2(text, languagecodes.DETECT_LANGUAGE, languagecodes.ENGLISH)
-	// assert.Equal(t, translated, result)
 	assert.NotEqual(t, "", result)
 	assert.Equal(t, nil, err)
 }
