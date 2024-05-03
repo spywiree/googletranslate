@@ -1,4 +1,4 @@
-module github.com/spywiree/googletranslate
+module github.com/spywiree/googletranslate/v2
 
 go 1.22.2
 

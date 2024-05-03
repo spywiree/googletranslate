@@ -6,7 +6,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/spywiree/googletranslate"
+	"github.com/spywiree/googletranslate/v2"
 	"github.com/spywiree/languagecodes"
 	"github.com/stretchr/testify/assert"
 )
