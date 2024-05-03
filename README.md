@@ -7,7 +7,7 @@
 
 Install:
 ```
-go get github.com/spywiree/googletranslate
+go get github.com/spywiree/googletranslate/v2
 ```
 
 Example usage:
