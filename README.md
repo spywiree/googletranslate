@@ -16,7 +16,7 @@ package main
 
 import (
     "fmt"
-    gt "github.com/spywiree/googletranslate"
+    gt "github.com/spywiree/googletranslate/v2"
 )
 
 func main(){
