@@ -5,7 +5,7 @@ import (
 	"net/http"
 	u "net/url"
 
-	"github.com/spywiree/languagecodes"
+	languagecodes "github.com/spywiree/langcodes"
 	"golang.org/x/net/html"
 )
 

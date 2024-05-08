@@ -9,7 +9,7 @@ import (
 	u "net/url"
 	"strings"
 
-	"github.com/spywiree/languagecodes"
+	languagecodes "github.com/spywiree/langcodes"
 )
 
 // TranslateE1 translates the given text from the source language to the target language

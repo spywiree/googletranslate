@@ -7,7 +7,7 @@ import (
 	"net/http"
 	u "net/url"
 
-	"github.com/spywiree/languagecodes"
+	languagecodes "github.com/spywiree/langcodes"
 )
 
 // TranslateE2 translates the given text from the source language to the target language

@@ -2,7 +2,7 @@ package googletranslate
 
 import (
 	"github.com/spywiree/googletranslate/v2/semaphore"
-	"github.com/spywiree/languagecodes"
+	languagecodes "github.com/spywiree/langcodes"
 )
 
 var sem = semaphore.NewSemaphore(256) // Default value is 256
