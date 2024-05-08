@@ -2,8 +2,8 @@ github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
-github.com/spywiree/languagecodes v0.0.0-20240503123528-cb4ae325cbba h1:09jBkMm1ta4f6LdCqEBlFeVrIMqTLDR/5/EDG7rUjtk=
-github.com/spywiree/languagecodes v0.0.0-20240503123528-cb4ae325cbba/go.mod h1:qZIl4iSwH0wUf+JJwYEsVePCyrrSkH5Bqh6M15Xh6lk=
+github.com/spywiree/languagecodes v1.0.0 h1:C0gyNRBEHb9yrDWiZI0/31514vpzX5kXTvlN9h0VMik=
+github.com/spywiree/languagecodes v1.0.0/go.mod h1:qZIl4iSwH0wUf+JJwYEsVePCyrrSkH5Bqh6M15Xh6lk=
 github.com/stretchr/testify v1.9.0 h1:HtqpIVDClZ4nwg75+f6Lvsy/wHu+3BoSGCbBAcpTsTg=
 github.com/stretchr/testify v1.9.0/go.mod h1:r2ic/lqez/lEtzL7wO/rwa5dbSLXVDPFyf8C91i36aY=
 golang.org/x/net v0.25.0 h1:d/OCCoBEUq33pjydKrGQhw7IlUPI2Oylr+8qLx49kac=
