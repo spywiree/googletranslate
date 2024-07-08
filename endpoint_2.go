@@ -2,7 +2,6 @@ package googletranslate
 
 import (
 	"encoding/json"
-	"errors"
 	"io"
 	"net/http"
 	u "net/url"
@@ -31,8 +30,8 @@ func TranslateE2(text string, source, target languagecodes.LanguageCode) (string
 	}
 	defer r.Body.Close()
 
-	if r.StatusCode != 200 {
-		return "", errors.New(r.Status)
+	if r.StatusCode != http.StatusOK {
+		return "", HttpError(r.StatusCode)
 	}
 
 	body, err := io.ReadAll(r.Body)

@@ -1,6 +1,15 @@
 package googletranslate
 
-import "errors"
+import (
+	"errors"
+	"fmt"
+)
+
+type HttpError int
+
+func (e HttpError) Error() string {
+	return fmt.Sprintf("received non-OK HTTP status: %d", e)
+}
 
 var NoTranslatedDataErr = errors.New("no translated data in response")
 var MaxTextLengthExceededErr = errors.New("the maximum text length of 5000 characters has been exceeded")

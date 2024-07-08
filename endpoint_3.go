@@ -1,7 +1,6 @@
 package googletranslate
 
 import (
-	"errors"
 	"net/http"
 	u "net/url"
 
@@ -34,10 +33,10 @@ func TranslateE3(text string, source, target languagecodes.LanguageCode) (string
 	}
 	defer r.Body.Close()
 
-	if r.StatusCode == 429 {
+	if r.StatusCode == http.StatusTooManyRequests {
 		return "", TooManyRequestsErr
-	} else if r.StatusCode != 200 {
-		return "", errors.New(r.Status)
+	} else if r.StatusCode != http.StatusOK {
+		return "", HttpError(r.StatusCode)
 	}
 
 	z := html.NewTokenizer(r.Body)
