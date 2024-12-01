@@ -1,4 +1,4 @@
-## Google Translate API in Golang
+## Google Translate API in Go
 
  - **free**
  - **thread-safe**
