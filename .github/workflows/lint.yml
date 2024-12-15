@@ -1,0 +1,21 @@
+name: lint
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "**/*.go"
+      - "go.*"
+  push:
+    branches: [main]
+    paths:
+      - "**/*.go"
+      - "go.*"
+  workflow_dispatch:
+
+jobs:
+  lint:
+    uses: spywiree-priv/meta/.github/workflows/lint.yml@main
+    with:
+      generate: false
+      test: true
