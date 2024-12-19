@@ -51,8 +51,7 @@ func TranslateE1(text string, source, target languagecodes.LanguageCode) (string
 
 	if len(result) > 0 {
 		inner := result[0]
-		switch inner := inner.(type) {
-		case []any:
+		if inner, ok := inner.([]any); ok {
 			for _, slice := range inner {
 				for _, translated := range slice.([]any) {
 					translatedTexts = append(
