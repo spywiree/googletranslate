@@ -40,29 +40,21 @@ func TranslateE3(text string, source, target langcodes.LanguageCode) (string, er
 	}
 
 	z := html.NewTokenizer(r.Body)
-
-	var keyStr string
-	var valueStr string
-	var tagNameStr string
-
+	var key, value, tagName []byte
 	for {
 		tt := z.Next()
 		if tt == html.ErrorToken {
 			break
 		}
 
-		if keyStr == "class" &&
-			valueStr == "result-container" &&
-			tagNameStr == "div" {
+		if string(key) == "class" &&
+			string(value) == "result-container" &&
+			string(tagName) == "div" {
 			return string(z.Text()), nil
 		}
 
-		key, value, _ := z.TagAttr()
-		keyStr = string(key)
-		valueStr = string(value)
-
-		tagName, _ := z.TagName()
-		tagNameStr = string(tagName)
+		key, value, _ = z.TagAttr()
+		tagName, _ = z.TagName()
 	}
 
 	return "", NoTranslatedDataErr

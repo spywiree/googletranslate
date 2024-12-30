@@ -2,7 +2,6 @@ package googletranslate
 
 import (
 	"encoding/json"
-	"io"
 	"net/http"
 	u "net/url"
 
@@ -34,26 +33,22 @@ func TranslateE2(text string, source, target langcodes.LanguageCode) (string, er
 		return "", HttpError(r.StatusCode)
 	}
 
-	body, err := io.ReadAll(r.Body)
-	if err != nil {
-		return "", err
-	}
+	dec := json.NewDecoder(r.Body)
+	if source != langcodes.DETECT_LANGUAGE {
+		var result []string
+		err = dec.Decode(&result)
+		if err != nil {
+			return "", err
+		}
 
-	var result []any
-	err = json.Unmarshal(body, &result)
-	if err != nil {
-		return "", err
-	}
+		return result[0], nil
+	} else {
+		var result [][]string
+		err = dec.Decode(&result)
+		if err != nil {
+			return "", err
+		}
 
-	inner := result[0]
-	switch inner := inner.(type) {
-	case string:
-		// Handle the case when source language is "auto".
-		return inner, nil
-	case []any:
-		// Handle the case when a specific source language is provided.
-		return inner[0].(string), nil
+		return result[0][0], nil
 	}
-
-	return "", NoTranslatedDataErr
 }

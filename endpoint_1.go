@@ -2,8 +2,6 @@ package googletranslate
 
 import (
 	"encoding/json"
-	"fmt"
-	"io"
 	"net/http"
 	u "net/url"
 	"strings"
@@ -36,36 +34,34 @@ func TranslateE1(text string, source, target langcodes.LanguageCode) (string, er
 		return "", HttpError(r.StatusCode)
 	}
 
-	body, err := io.ReadAll(r.Body)
-	if err != nil {
-		return "", err
-	}
-
-	var translatedTexts []string
 	var result []any
-
-	err = json.Unmarshal(body, &result)
+	err = json.NewDecoder(r.Body).Decode(&result)
 	if err != nil {
 		return "", err
 	}
-
-	if len(result) > 0 {
-		inner := result[0]
-		if inner, ok := inner.([]any); ok {
-			for _, slice := range inner {
-				for _, translated := range slice.([]any) {
-					translatedTexts = append(
-						translatedTexts,
-						fmt.Sprintf("%v", translated),
-					)
-					break
-				}
-			}
-			combined := strings.Join(translatedTexts, "")
-
-			return combined, nil
-		}
+	if len(result) == 0 {
+		return "", NoTranslatedDataErr
 	}
 
-	return "", NoTranslatedDataErr
+	result, ok := result[0].([]any)
+	if !ok {
+		return "", NoTranslatedDataErr
+	}
+
+	var sb strings.Builder
+	for _, part := range result {
+		part, ok := part.([]any)
+		if !ok || len(part) == 0 {
+			return "", NoTranslatedDataErr
+		}
+
+		s, ok := part[0].(string)
+		if !ok {
+			return "", NoTranslatedDataErr
+		}
+
+		sb.WriteString(s)
+	}
+
+	return sb.String(), nil
 }
