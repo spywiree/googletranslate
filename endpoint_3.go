@@ -4,13 +4,13 @@ import (
 	"net/http"
 	u "net/url"
 
-	languagecodes "github.com/spywiree/langcodes"
+	langcodes "github.com/spywiree/langcodes"
 	"golang.org/x/net/html"
 )
 
 // TranslateE3 translates the given text from the source language to the target language
 // using translate.google.com/m endpoint.
-func TranslateE3(text string, source, target languagecodes.LanguageCode) (string, error) {
+func TranslateE3(text string, source, target langcodes.LanguageCode) (string, error) {
 	if source == target || text == "" {
 		return text, nil
 	}

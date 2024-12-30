@@ -6,12 +6,12 @@ import (
 	"net/http"
 	u "net/url"
 
-	languagecodes "github.com/spywiree/langcodes"
+	langcodes "github.com/spywiree/langcodes"
 )
 
 // TranslateE2 translates the given text from the source language to the target language
 // using clients5.google.com/translate_a/t endpoint.
-func TranslateE2(text string, source, target languagecodes.LanguageCode) (string, error) {
+func TranslateE2(text string, source, target langcodes.LanguageCode) (string, error) {
 	if source == target || text == "" {
 		return text, nil
 	}

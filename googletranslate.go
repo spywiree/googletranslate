@@ -2,7 +2,7 @@ package googletranslate
 
 import (
 	"github.com/spywiree/googletranslate/v2/semaphore"
-	languagecodes "github.com/spywiree/langcodes"
+	langcodes "github.com/spywiree/langcodes"
 )
 
 var sem = semaphore.NewSemaphore(256) // Default value is 256
@@ -14,7 +14,7 @@ func SetMaxConnections(maxConcurrent int) {
 }
 
 // Translate translates the given text from the source language to the target language using Google Translate API.
-func Translate(text string, source, target languagecodes.LanguageCode) (string, error) {
+func Translate(text string, source, target langcodes.LanguageCode) (string, error) {
 	translated, err := TranslateE1(text, source, target)
 	if err == nil {
 		return translated, nil

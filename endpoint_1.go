@@ -8,12 +8,12 @@ import (
 	u "net/url"
 	"strings"
 
-	languagecodes "github.com/spywiree/langcodes"
+	langcodes "github.com/spywiree/langcodes"
 )
 
 // TranslateE1 translates the given text from the source language to the target language
 // using the translate.googleapis.com endpoint
-func TranslateE1(text string, source, target languagecodes.LanguageCode) (string, error) {
+func TranslateE1(text string, source, target langcodes.LanguageCode) (string, error) {
 	if source == target || text == "" {
 		return text, nil
 	}
