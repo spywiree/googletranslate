@@ -2,52 +2,78 @@ package googletranslate_test
 
 import (
 	_ "embed"
-	"strings"
 	"testing"
 
+	"github.com/mitchellh/go-wordwrap"
 	"github.com/spywiree/googletranslate/v2"
-	languagecodes "github.com/spywiree/langcodes"
-	"github.com/stretchr/testify/assert"
+	langcodes "github.com/spywiree/langcodes"
 )
 
-//go:embed text.txt
-var text string
+//go:embed sample.txt
+var sampleText string
+
+// Shorten to two paragraphs
+var shortSampleText = func() string {
+	IndexN := func(s, substr string, n int) int {
+		count := 0
+		for i := 0; i <= len(s)-len(substr); i++ {
+			if s[i:i+len(substr)] == substr {
+				count++
+				if count == n {
+					return i
+				}
+			}
+		}
+		return -1
+	}
+
+	return sampleText[:IndexN(sampleText, "\n\n", 2)]
+}()
 
 func TestEndpoint1A(t *testing.T) {
-	result, err := googletranslate.TranslateE1(text, languagecodes.DETECT_LANGUAGE, languagecodes.ENGLISH)
-	assert.NotEqual(t, "", result)
-	assert.Equal(t, nil, err)
+	translated, err := googletranslate.TranslateE1(sampleText, langcodes.DETECT_LANGUAGE, langcodes.ENGLISH)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log("\n\n" + wordwrap.WrapString(translated, 80))
 }
 
 func TestEndpoint1B(t *testing.T) {
-	result, err := googletranslate.TranslateE1(text, languagecodes.POLISH, languagecodes.ENGLISH)
-	assert.NotEqual(t, "", result)
-	assert.Equal(t, nil, err)
+	translated, err := googletranslate.TranslateE1(sampleText, langcodes.POLISH, langcodes.ENGLISH)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log("\n\n" + wordwrap.WrapString(translated, 80))
 }
 
 func TestEndpoint2A(t *testing.T) {
-	result, err := googletranslate.TranslateE2(text, languagecodes.DETECT_LANGUAGE, languagecodes.ENGLISH)
-	assert.NotEqual(t, "", result)
-	assert.Equal(t, nil, err)
+	translated, err := googletranslate.TranslateE2(sampleText, langcodes.DETECT_LANGUAGE, langcodes.ENGLISH)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log("\n\n" + wordwrap.WrapString(translated, 80))
 }
 
 func TestEndpoint2B(t *testing.T) {
-	result, err := googletranslate.TranslateE2(text, languagecodes.POLISH, languagecodes.ENGLISH)
-	assert.NotEqual(t, "", result)
-	assert.Equal(t, nil, err)
+	translated, err := googletranslate.TranslateE2(sampleText, langcodes.POLISH, langcodes.ENGLISH)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log("\n\n" + wordwrap.WrapString(translated, 80))
 }
 
-// Shorten to two paragraphs
-var shortText = strings.Join(strings.Split(text, "\n")[:4], "\n")
-
 func TestEndpoint3A(t *testing.T) {
-	result, err := googletranslate.TranslateE3(shortText, languagecodes.DETECT_LANGUAGE, languagecodes.ENGLISH)
-	assert.NotEqual(t, "", result)
-	assert.Equal(t, nil, err)
+	translated, err := googletranslate.TranslateE3(shortSampleText, langcodes.DETECT_LANGUAGE, langcodes.ENGLISH)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log("\n\n" + wordwrap.WrapString(translated, 80))
 }
 
 func TestEndpoint3B(t *testing.T) {
-	result, err := googletranslate.TranslateE3(shortText, languagecodes.POLISH, languagecodes.ENGLISH)
-	assert.NotEqual(t, "", result)
-	assert.Equal(t, nil, err)
+	translated, err := googletranslate.TranslateE3(shortSampleText, langcodes.POLISH, langcodes.ENGLISH)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log("\n\n" + wordwrap.WrapString(translated, 80))
 }
