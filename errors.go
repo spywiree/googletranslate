@@ -2,13 +2,13 @@ package googletranslate
 
 import (
 	"errors"
-	"fmt"
+	"strconv"
 )
 
 type HttpError int
 
 func (e HttpError) Error() string {
-	return fmt.Sprintf("received non-OK HTTP status: %d", e)
+	return "received non-OK HTTP status: " + strconv.Itoa(int(e))
 }
 
 var NoTranslatedDataErr = errors.New("no translated data in response")
