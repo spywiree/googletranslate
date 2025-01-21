@@ -15,7 +15,7 @@ on:
 
 jobs:
   lint:
-    uses: spywiree-priv/meta/.github/workflows/lint.yml@main
+    uses: spywiree/meta/.github/workflows/lint.yml@main
     with:
       generate: false
       test: true
