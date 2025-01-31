@@ -1,0 +1,21 @@
+{
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  extends: [
+    "config:recommended",
+    ":semanticCommits",
+    ":semanticCommitTypeAll(chore)",
+    ":semanticCommitScope(deps)",
+    "group:allNonMajor"
+  ],
+  packageRules: [
+    {
+      matchManagers: ["github-actions"],
+      semanticCommitType: "ci",
+    },
+    {
+      // https://github.com/renovatebot/renovate/blob/main/lib/modules/versioning/go-mod-directive/readme.md
+      matchDatasources: ["golang-version"],
+      rangeStrategy: "bump",
+    },
+  ],
+}

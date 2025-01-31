@@ -1,0 +1,11 @@
+run:
+  timeout: "5m"
+linters:
+  presets:
+    - performance
+  enable:
+    - gosec
+    - gocritic
+    - gosmopolitan
+  disable:
+    - noctx

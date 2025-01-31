@@ -1,0 +1,27 @@
+name: golangci-lint
+
+on:
+  pull_request:
+    branches: ["*"]
+    paths: ["**/*.go", "go.*"]
+  push:
+    branches: ["*"]
+    tags-ignore: ["v*"]
+    paths: ["**/*.go", "go.*"]
+  workflow_dispatch:
+
+jobs:
+  golangci-lint:
+    name: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+      - run: go generate ./...
+        shell: bash
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v6
+        with:
+          args: "--config=.github/.golangci.yml"
