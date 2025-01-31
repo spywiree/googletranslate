@@ -1,6 +1,6 @@
 module github.com/spywiree/googletranslate/v2
 
-go 1.23.4
+go 1.23.5
 
 require golang.org/x/sync v0.10.0
 
