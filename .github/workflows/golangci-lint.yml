@@ -23,5 +23,3 @@ jobs:
         shell: bash
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v6
-        with:
-          args: "--config=.github/.golangci.yml"
