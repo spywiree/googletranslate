@@ -15,15 +15,15 @@ func TranslateE2(text string, source, target langcodes.LanguageCode) (string, er
 		return text, nil
 	}
 
-	url := "https://clients5.google.com/translate_a/t?client=dict-chrome-ex"
-	url += "&sl=" + string(source)
-	url += "&tl=" + string(target)
-	url += "&q=" + u.QueryEscape(text)
+	url := "https://clients5.google.com/translate_a/t?client=dict-chrome-ex" +
+		"&sl=" + string(source) +
+		"&tl=" + string(target) +
+		"&q=" + u.QueryEscape(text)
 
 	_ = sem.Acquire(1)
 	defer sem.Release(1)
 
-	r, err := http.Get(url)
+	r, err := http.Get(url) //#nosec G107
 	if err != nil {
 		return "", err
 	}
