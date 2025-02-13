@@ -5,7 +5,11 @@
     ":semanticCommits",
     ":semanticCommitTypeAll(chore)",
     ":semanticCommitScope(deps)",
-    "group:allNonMajor"
+    "group:allNonMajor",
+  ],
+  postUpdateOptions: [
+    // https://docs.renovatebot.com/golang/#module-tidying
+    "gomodTidy",
   ],
   packageRules: [
     {
