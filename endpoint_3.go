@@ -31,7 +31,7 @@ func TranslateE3(text string, source, target langcodes.LanguageCode) (string, er
 	if err != nil {
 		return "", err
 	}
-	defer r.Body.Close()
+	defer r.Body.Close() //nolint:errcheck
 
 	if r.StatusCode == http.StatusTooManyRequests {
 		return "", TooManyRequestsErr
