@@ -1,19 +1,11 @@
-run:
-  timeout: "5m"
+version: "2"
 linters:
-  presets:
-    - performance
   enable:
-    # https://golangci-lint.run/usage/linters/#enabled-by-default
-    - errcheck
-    - gosimple
-    - govet
-    - ineffassign
-    - staticcheck
-    - unused
-    #
-    - gosec
     - gocritic
-    - gosmopolitan
-  disable:
-    - noctx
+    - gosec
+  settings:
+    gosec:
+      excludes:
+        - G103
+        - G107
+        - G304

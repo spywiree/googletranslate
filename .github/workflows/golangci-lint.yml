@@ -3,11 +3,11 @@ name: golangci-lint
 on:
   pull_request:
     branches: ["*"]
-    paths: ["**/*.go", "go.*"]
+    paths: ["**/*.go", "go.*", ".golangci.yml"]
   push:
     branches: ["*"]
     tags-ignore: ["v*"]
-    paths: ["**/*.go", "go.*"]
+    paths: ["**/*.go", "go.*", ".golangci.yml"]
   workflow_dispatch:
 
 jobs:
