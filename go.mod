@@ -2,7 +2,7 @@ module github.com/spywiree/googletranslate/v2
 
 go 1.24.1
 
-require golang.org/x/sync v0.12.0
+require golang.org/x/sync v0.13.0
 
 require (
 	github.com/spywiree/langcodes v1.1.0
